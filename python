@@ -1,0 +1,36 @@
+""" Sarah is organizing a series of study groups and wants to find the students who are only in the first group's set and not in any of the other groups. Each group of students is represented by a set of IDs, and Sarah wants to know which students are exclusively in the first group after excluding all others.
+
+Input format :
+The first line of input consists of an integer n, representing the number of groups.
+
+The next n lines each contain a set of integers, where each set represents the IDs of students in that group.
+
+Output format :
+The first line of output displays a list of integers, sorted in ascending order, representing the IDs of students who are only in the first group.
+
+The second line displays an integer representing the number of these exclusive students."""
+
+# Read the number of sets
+n = int(input())
+
+# Initialize a list to store sets
+sets_list = []
+
+# Read each set from input and store as a set in the list
+for _ in range(n):
+    current_set = set(map(int, input().split()))
+    sets_list.append(current_set)
+
+# Initialize the result as the first set
+result_set = sets_list[0]
+
+# Perform the chain of set difference operations
+for i in range(1, n):
+    result_set = result_set - sets_list[i]
+
+# Convert the result set to a sorted list
+sorted_result = sorted(result_set)
+
+# Print the sorted final set and the number of elements in it
+print(sorted_result)
+print(len(sorted_result))
